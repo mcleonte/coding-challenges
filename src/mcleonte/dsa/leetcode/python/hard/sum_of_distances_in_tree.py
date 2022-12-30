@@ -10,3 +10,7 @@ between the ith node in the tree and all other nodes.
 """
 
 from typing import List
+
+
+def sum_of_distances_in_tree(n: int, edges: List[List[int]]) -> List[int]:
+  return n, edges
