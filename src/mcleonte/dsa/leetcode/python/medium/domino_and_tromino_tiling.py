@@ -25,9 +25,8 @@ def num_tilings(n: int) -> int:
   O(n) O(1)
   """
   queue = deque([0, 1, 2, 5])
-  if n < 4:
-    return queue[n]
+  if n < 4: return queue[n]
   for _ in range(n - 3):
-    queue.append(queue[-1] * 2 + queue[-3])
     queue.popleft()
+    queue.append(queue[0] + 2 * queue[-1])
   return queue[-1] % 1_000_000_007
