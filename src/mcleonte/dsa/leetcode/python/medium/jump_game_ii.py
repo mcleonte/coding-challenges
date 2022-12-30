@@ -1,8 +1,7 @@
 """
 https://leetcode.com/problems/jump-game-ii/
 
-https://leetcode.com/problems/jump-game-ii/discuss/2960255/Python-or-O(n)-O(1)-or-greater99-10-lines-with-for-loop
-
+https://leetcode.com/problems/jump-game-ii/discuss/2960255/Python-or-O(n)-O(1)-or-greater99-with-for-loop
 
 You are given a 0-indexed array of integers nums of length n. You are initially
 positioned at nums[0].
@@ -24,7 +23,8 @@ def jump(nums: List[int]) -> int:
   """
   O(n) O(1)
   """
-  if (target_i := len(nums) - 1) == 0: return 0
+  if (target_i := len(nums) - 1) == 0:
+    return 0
   jump_count = max_i = next_max_i = 0
   for i, max_jump in enumerate(nums):
     if next_max_i < i + max_jump:
