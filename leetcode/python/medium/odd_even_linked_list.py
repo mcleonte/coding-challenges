@@ -6,12 +6,7 @@ https://leetcode.com/problems/odd-even-linked-list/solutions/2881668/daily-leetc
 
 from typing import Optional
 
-
-class ListNode:
-
-    def __init__(self, val=0, nxt=None):
-        self.val = val
-        self.next = nxt
+from .. import ListNode
 
 
 class Solution:
