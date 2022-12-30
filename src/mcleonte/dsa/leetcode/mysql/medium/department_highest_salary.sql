@@ -9,9 +9,9 @@ WITH cte AS (
 )
 
 SELECT
+  department.name AS department,
   cte.name AS employee,
-  cte.salary,
-  department.name AS department
+  cte.salary
 FROM cte
 INNER JOIN department
   ON cte.departmentid = department.id
