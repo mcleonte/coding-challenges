@@ -24,7 +24,7 @@ will act in the following way:
 Return the order in which the CPU will process the tasks.
 """
 
-from collections import List
+from typing import List
 from bisect import bisect
 
 
@@ -38,8 +38,7 @@ def get_order(tasks: List[List[int]]) -> List[int]:
   i = j = 0
   while True:
     while tasks[j][0] <= t:
-      k = bisect.bisect(
-          tasks, tasks[j][1], lo=i, hi=j, key=lambda item: item[1])
+      k = bisect(tasks, tasks[j][1], lo=i, hi=j, key=lambda item: item[1])
       if k != j: tasks.insert(k, tasks.pop(j))
       j += 1
       if j == len_tasks:
