@@ -20,32 +20,60 @@ duplicate values, and no two sets can contain the same value.
   not in a set, the function should return null/ None. Note that after a set is
   part of a union, its representative can potentially change.
 
-You can assume [createSet will never be called with the same value twice.
+You can assume createSet will never be called with the same value twice.
 """
 
 
 class UnionFind:
   """
   Union Find / Disjoint Set data structure
+  with ranks and path compression implemented
+  for optimized (near) constant time complexity.
   """
 
   def __init__(self):
-    self.sets = {}
+    self.tree = {}
+    self.rank = {}
 
   def create_set(self, value):
-    if value not in self.sets:
-      self.sets[value] = {value}
+    """
+    O(1) O(1)
+    """
+    if value not in self.tree:
+      self.tree[value] = value
+      self.rank[value] = 0
 
   def find(self, value):
-    if value not in self.sets:
+    """
+    ~O(1) O(1)
+    """
+    if value not in self.tree:
       return None
-    while isinstance(self.sets[value], int):
-      value = self.sets[value]
-    return value
+    root = value
+    # walk until root found
+    while root != self.tree[root]:
+      root = self.tree[root]
+    # path compression
+    while root != self.tree[value]:
+      value, self.tree[value] = self.tree[value], root
+    return root
 
   def union(self, value1, value2):
+    """
+    ~O(1) O(1)
+    """
     key1 = self.find(value1)
     key2 = self.find(value2)
-    if None != key1 != key2 != None:
-      self.sets[key1] |= self.sets[key2]
-      self.sets[key2] = key1
+    if key1 is None or key2 is None or key1 == key2:
+      return
+    rank1, rank2 = self.rank[key1], self.rank[key2]
+    if rank1 > rank2:
+      self.tree[key2] = key1
+      self.rank.pop(key2)
+    elif rank1 < rank2:
+      self.tree[key1] = key2
+      self.rank.pop(key1)
+    else:
+      self.tree[key1] = key2
+      self.rank[key2] += 1
+      self.rank.pop(key1)
