@@ -40,42 +40,42 @@ ORDERS = {
 
 
 def number_to_words(num: int) -> str:
-    """
-    O(n) O(n) | n = len(str(num))
-    """
-    num = str(num)
-    num = "0" * (0, 2, 1)[len(num) % 3] + num  # ensure 3 digits string
-    out = []
-    triplets = [num[i : i + 3] for i in range(0, len(num), 3)]
+  """
+  O(n) O(n) | n = len(str(num))
+  """
+  num = str(num)
+  num = "0" * (0, 2, 1)[len(num) % 3] + num  # ensure 3 digits string
+  out = []
+  triplets = [num[i:i + 3] for i in range(0, len(num), 3)]
 
-    for i, (hundreds, tens, units) in enumerate(triplets):
+  for i, (hundreds, tens, units) in enumerate(triplets):
 
+    try:
+      out.append(DIGITS[hundreds])
+    except KeyError:
+      pass
+
+    try:
+      out.append(EDGE_CASES[tens + units])
+    except KeyError:
+
+      try:
+        out.append(EDGE_CASES[tens])
+      except KeyError:
         try:
-            out.append(DIGITS[hundreds])
+          out.append(DIGITS[tens] + "ty")
         except KeyError:
-            pass
+          pass
 
-        try:
-            out.append(EDGE_CASES[tens + units])
-        except KeyError:
+      try:
+        out.append(DIGITS[units])
+      except KeyError:
+        pass
 
-            try:
-                out.append(EDGE_CASES[tens])
-            except KeyError:
-                try:
-                    out.append(DIGITS[tens] + "ty")
-                except KeyError:
-                    pass
+    if hundreds + tens + units != "000":
+      try:
+        out.append(ORDERS[len(triplets) - i])
+      except KeyError:
+        pass
 
-            try:
-                out.append(DIGITS[units])
-            except KeyError:
-                pass
-
-        if hundreds + tens + units != "000":
-            try:
-                out.append(ORDERS[len(triplets) - i])
-            except KeyError:
-                pass
-
-    return " ".join(out) or "Zero"
+  return " ".join(out) or "Zero"
