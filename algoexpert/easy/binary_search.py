@@ -7,16 +7,16 @@ otherwise -1.
 
 
 def binary_search(arr, tgt):
-    """
-    O(logn) O(1)
-    """
-    left, right = 0, len(arr) - 1
-    while left <= right:
-        mid = (left + right) // 2
-        if tgt == arr[mid]:
-            return mid
-        if tgt > arr[mid]:
-            left = mid + 1
-        else:
-            right = mid - 1
-    return -1
+  """
+  O(logn) O(1)
+  """
+  left, right = 0, len(arr) - 1
+  while left <= right:
+    mid = (left + right) // 2
+    if tgt == arr[mid]:
+      return mid
+    if tgt > arr[mid]:
+      left = mid + 1
+    else:
+      right = mid - 1
+  return -1

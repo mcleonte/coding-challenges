@@ -11,10 +11,10 @@ other words, the head will never be None.
 
 
 def reverse_linked_list(head):
-    """
-    O(n) O(1)
-    """
-    prev, curr = None, head
-    while curr:
-        curr.next, prev, curr = prev, curr, curr.next
-    return prev
+  """
+  O(n) O(1)
+  """
+  prev, curr = None, head
+  while curr:
+    curr.next, prev, curr = prev, curr, curr.next
+  return prev
