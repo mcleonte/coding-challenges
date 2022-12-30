@@ -46,8 +46,7 @@ from pyspark.sql import SparkSession
 
 
 def get_user_interaction_counts(search_interaction_df):
-  spark = SparkSession.builder.appName(
-      "get_user_interaction_counts").getOrCreate()
+  spark = SparkSession.builder.getOrCreate()
   search_interaction_df.createOrReplaceTempView("interactions")
   return spark.sql("""
     WITH cte AS (
