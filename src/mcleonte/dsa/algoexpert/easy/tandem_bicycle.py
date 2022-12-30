@@ -35,7 +35,8 @@ def tandem_bicycle(
     fastest: bool,
 ) -> bool:
   """
-  O(nlogn) O(1)"""
+  O(nlogn) O(1)
+  """
   red_shirt_speeds.sort()  # O(nlogn)
   blue_shirt_speeds.sort(reverse=fastest)  # O(nlogn)
   return sum(max(r, b) for r, b in \
