@@ -3,11 +3,11 @@
 
 -- v1
 SELECT name
-FROM Customer
+FROM customer
 WHERE referee_id IS NULL
-OR referee_id <> 2;
+  OR referee_id != 2;
 
 -- v2
 SELECT name
-FROM Customer
-WHERE COALESCE(referee_id,0) <> 2;
+FROM customer
+WHERE COALESCE(referee_id, 0) != 2;
