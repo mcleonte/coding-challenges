@@ -23,8 +23,8 @@ Notes:
    top, peek/pop from top, size, and is empty operations are valid.
 
  - Depending on your language, the stack may not be supported natively. You may
-simulate a stack using a list or deque (double-ended queue) as long as you use
-only a stack's standard operations.
+   simulate a stack using a list or deque (double-ended queue) as long as you
+   use only a stack's standard operations.
 
 Follow-up: Can you implement the queue such that each operation is amortized
 O(1) time complexity? In other words, performing n operations will take overall
