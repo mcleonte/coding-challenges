@@ -1,23 +1,38 @@
-def bubbleSort(array):
-    for i in range(len(array) - 1):
-        sorted = True
-        for j in range(len(array) - 1 - i):
-            if array[j] > array[j + 1]:
-                array[j], array[j + 1] = array[j + 1], array[j]
-                sorted = False
-        if sorted:
+"""
+Write a function that takes in an array of integers and returns a sorted version
+of that array. Use the Bubble Sort algorithm to sort the array.
+
+If you're unfamiliar with Bubble Sort, we recommend watching the Conceptual
+Overview section of this question's video explanation before starting to code.
+"""
+
+
+def bubble_sort(arr):
+    """
+    O(n^2), O(1)
+    """
+    for i in range(len(arr) - 1):
+        is_sorted = True
+        for j in range(len(arr) - 1 - i):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                is_sorted = False
+        if is_sorted:
             break
-    return array
+    return arr
 
 
-def bubbleSort2(array):
+def bubble_sort2(arr):
+    """
+    O(n^2), O(1)
+    """
     i = 0
-    unsorted = True
-    while unsorted:
-        unsorted = False
-        for j in range(len(array) - 1 - i):
-            if array[j] > array[j + 1]:
-                array[j], array[j + 1] = array[j + 1], array[j]
-                unsorted = True
+    is_sorted = False
+    while not is_sorted:
+        is_sorted = True
+        for j in range(len(arr) - 1 - i):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                is_sorted = False
         i += 1
-    return array
+    return arr
