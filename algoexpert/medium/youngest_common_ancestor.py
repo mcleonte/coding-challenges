@@ -15,7 +15,11 @@ ancestral tree below, the youngest common ancestor to nodes A and B is node A.
 from .. import AncestralTree
 
 
-def get_youngest_common_ancestor(_, desc1: AncestralTree, desc2: AncestralTree):
+def get_youngest_common_ancestor(
+    _: AncestralTree,
+    desc1: AncestralTree,
+    desc2: AncestralTree,
+):
   """
   O(d) O(1) | d = max( depth(desc1), depth(desc2) )
   """
@@ -42,7 +46,11 @@ def get_youngest_common_ancestor(_, desc1: AncestralTree, desc2: AncestralTree):
     desc1, desc2 = desc1.ancestor, desc2.ancestor
 
 
-def get_youngest_common_ancestor_2(anc, desc1, desc2):
+def get_youngest_common_ancestor_2(
+    anc: AncestralTree,
+    desc1: AncestralTree,
+    desc2: AncestralTree,
+):
   """
   O(d) O(d) | d = max( depth(d1), depth(d2) )
   """
