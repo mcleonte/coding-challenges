@@ -14,12 +14,12 @@ from typing import List
 
 
 def two_sum(nums: List[int], tgt: int) -> List[int]:
-    """
-    O(n) O(n)
-    """
-    mem = {}
-    for i, num in enumerate(nums):
-        if tgt - num in mem:
-            return [mem[tgt - num], i]
-        mem[num] = i
-    return None
+  """
+  O(n) O(n)
+  """
+  mem = {}
+  for i, num in enumerate(nums):
+    if tgt - num in mem:
+      return [mem[tgt - num], i]
+    mem[num] = i
+  return None
