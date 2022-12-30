@@ -5,18 +5,19 @@ from collections import deque
 
 
 class Node:
-    def __init__(self, name):
-        self.children = []
-        self.name = name
 
-    def addChild(self, name):
-        self.children.append(Node(name))
-        return self
+  def __init__(self, name):
+    self.children = []
+    self.name = name
 
-    def breadthFirstSearch(self, array):
-        deq = deque([self])
-        while len(deq) > 0:
-            node = deq.popleft()
-            array.append(node.name)
-            deq += node.children
-        return array
+  def addChild(self, name):
+    self.children.append(Node(name))
+    return self
+
+  def breadthFirstSearch(self, array):
+    deq = deque([self])
+    while len(deq) > 0:
+      node = deq.popleft()
+      array.append(node.name)
+      deq += node.children
+    return array
