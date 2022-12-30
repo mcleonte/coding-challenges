@@ -1,4 +1,5 @@
 -- https://leetcode.com/problems/department-highest-salary/
+-- https://leetcode.com/problems/department-highest-salary/discuss/2951421/MySQL-or-greater96-efficient-solution-with-CTE-and-RANK
 WITH cte AS (
   SELECT
     name,
