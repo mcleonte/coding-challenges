@@ -6,3 +6,4 @@ rename.py
 contents.md
 __pycache__
 *.egg-info/
+poetry.lock
