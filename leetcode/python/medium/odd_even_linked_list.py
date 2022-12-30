@@ -10,39 +10,39 @@ from .. import ListNode
 
 
 class Solution:
-    """
+  """
     O(n) O(1)
     """
 
-    # EAFP
-    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if not head:
-            return head
-        odd, even, even_head = head, head.next, head.next
-        while True:
-            try:
-                prev_odd = odd
-                odd.next = odd = even.next
-                even.next = even = odd.next
-            except AttributeError:
-                break
-        odd = odd or prev_odd
-        odd.next = even_head
-        return head
+  # EAFP
+  def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    if not head:
+      return head
+    odd, even, even_head = head, head.next, head.next
+    while True:
+      try:
+        prev_odd = odd
+        odd.next = odd = even.next
+        even.next = even = odd.next
+      except AttributeError:
+        break
+    odd = odd or prev_odd
+    odd.next = even_head
+    return head
 
-    # LBYL
-    def oddEvenList2(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if not head:
-            return head
-        odd, even, even_head = head, head.next, head.next
-        while True:
-            if not even:
-                break
-            prev_odd = odd
-            odd.next = odd = even.next
-            if not odd:
-                odd = prev_odd
-                break
-            even.next = even = odd.next
-        odd.next = even_head
-        return head
+  # LBYL
+  def oddEvenList2(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    if not head:
+      return head
+    odd, even, even_head = head, head.next, head.next
+    while True:
+      if not even:
+        break
+      prev_odd = odd
+      odd.next = odd = even.next
+      if not odd:
+        odd = prev_odd
+        break
+      even.next = even = odd.next
+    odd.next = even_head
+    return head
