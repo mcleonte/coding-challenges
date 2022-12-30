@@ -17,8 +17,9 @@ def sparse_matrix_multiplication(
     matrix_b: List[List[int]],
 ) -> List[List[int]]:
 
-  n, m, m2, p = len(matrix_a), len(matrix_a[0]), len(matrix_b), len(matrix_b[0])
-  if m != m2:
+  n, m = len(matrix_a), len(matrix_a[0])
+  q, p = len(matrix_b), len(matrix_b[0])
+  if m != q:
     return [[]]
   out = []
   for i in range(n):
