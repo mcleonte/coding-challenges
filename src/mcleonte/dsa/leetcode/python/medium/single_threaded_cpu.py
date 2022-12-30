@@ -43,5 +43,8 @@ def get_order(tasks: List[List[int]]) -> List[int]:
       j += 1
       if j == len_tasks:
         return [task[1][1] for task in tasks]
-    t = max(t, tasks[i][0]) + tasks[i][1][0]
-    i += 1
+    if tasks[i][0] > t:
+      t = tasks[i][0]
+    else:
+      t += tasks[i][1][0]
+      i += 1
