@@ -11,8 +11,10 @@ def deep_round(
 ) -> Dict[str, Union[float, List[float]]]:
 
   return {
-      k: [round(v[0], 4), round(v[1], 4)]
-      if isinstance(v, list) else round(v, 4) if isinstance(v, float) else v
+      k:
+      [round(v[0], 4), round(v[1], 4)] if isinstance(v, list) \
+      else round(v, 4) if isinstance(v, float)
+      else v
       for k, v in result.items()
   }
 
