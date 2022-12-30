@@ -11,24 +11,20 @@ from typing import Optional
 from .. import TreeNode
 
 
-class Solution:
-    def range_sum_bst(self, root: Optional[TreeNode], low: int, high: int) -> int:
-        return (
-            0
-            if not root
-            else (root.val if low <= root.val <= high else 0)
-            + (self.range_sum_bst(root.left, low, high) if root.val > low else 0)
-            + (self.range_sum_bst(root.right, low, high) if root.val < high else 0)
-        )
+def range_sum_bst(root: Optional[TreeNode], low: int, high: int) -> int:
+  return (0 if not root else (root.val if low <= root.val <= high else 0) +
+          (range_sum_bst(root.left, low, high) if root.val > low else 0) +
+          (range_sum_bst(root.right, low, high) if root.val < high else 0))
 
-    def range_sum_bst_2(self, root: Optional[TreeNode], low: int, high: int) -> int:
-        if not root:
-            return 0
-        out, val = 0, root.val
-        if low <= val <= high:
-            out += val
-        if low < val:
-            out += self.range_sum_bst_2(root.left, low, high)
-        if val < high:
-            out += self.range_sum_bst_2(root.right, low, high)
-        return out
+
+def range_sum_bst_2(root: Optional[TreeNode], low: int, high: int) -> int:
+  if not root:
+    return 0
+  out, val = 0, root.val
+  if low <= val <= high:
+    out += val
+  if low < val:
+    out += range_sum_bst_2(root.left, low, high)
+  if val < high:
+    out += range_sum_bst_2(root.right, low, high)
+  return out
