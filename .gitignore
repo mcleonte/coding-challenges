@@ -5,3 +5,4 @@ make-md.py
 rename.py
 contents.md
 __pycache__
+*.egg-info/
