@@ -25,5 +25,8 @@ from typing import List
 
 
 def task_assignment(k: int, tasks: List[int]) -> List[List[int]]:
+  """
+  O(nlogn) O(n)
+  """
   indices = sorted(range(2 * k), key=lambda i: tasks[i])
   return [[indices[i], indices[-1 - i]] for i in range(k)]
