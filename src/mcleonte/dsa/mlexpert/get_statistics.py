@@ -23,19 +23,13 @@ def get_statistics(nums: List[int]) -> Dict[str, Union[float, List[float]]]:
   count = len(nums)
   nums.sort()
 
-  stats["mean"] = total / count
+  stats["mean"] = mean = total / count
   stats["mode"] = Counter(nums).most_common(1)[0][0]
-
-  if count % 2 == 0:
-    stats["median"] = (nums[count // 2] + nums[count // 2 - 1]) / 2
-  else:
-    stats["median"] = nums[count // 2]
-
-  stats["sample_variance"] = sum((num - stats["mean"])**2 for num in nums) / (
-      count - 1)
+  stats["median"] = nums[count // 2] if count % 2 else \
+                   (nums[count // 2] + nums[count // 2 - 1]) / 2
+  stats["sample_variance"] = sum((num - mean)**2 for num in nums) / (count - 1)
   stats["sample_standard_deviation"] = stats["sample_variance"]**.5
-
-  dev = 1.96 * stats["sample_standard_deviation"] / (count**.5)
-  stats["mean_confidence_interval"] = [stats["mean"] - dev, stats["mean"] + dev]
+  margin = 1.96 * stats["sample_standard_deviation"] / (count**.5)
+  stats["mean_confidence_interval"] = [mean - margin, mean + margin]
 
   return stats
