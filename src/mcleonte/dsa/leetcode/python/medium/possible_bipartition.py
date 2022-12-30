@@ -1,4 +1,11 @@
 """
+https://leetcode.com/problems/possible-bipartition/
+
+https://leetcode.com/problems/possible-bipartition/discuss/2940305/Python-or-O(v+e)-O(v+e)-99.56-677ms-or-very-clean-and-short-solution
+
+https://leetcode.com/problems/possible-bipartition/discuss/2933873/Daily-LeetCoding-Challenge-December-Day-21/1724844
+
+
 We want to split a group of n people (labeled from 1 to n) into two groups of
 any size. Each person may dislike some other people, and they should not go into
 the same group.
@@ -9,49 +16,33 @@ true if it is possible to split everyone into two groups in this way.
 """
 
 from typing import List
-from collections import defaultdict, deque
+from collections import defaultdict
 
 
 def possible_bipartition(_: int, dislikes: List[List[int]]) -> bool:
+  """
+  O(v+e) O(v+e)
+  """
 
-  def dfs(person: int, group: bool = False) -> bool:
-    groups[person] = group
-    for neighbour in people[person]:
-      if groups[neighbour] == group:
-        return False
-      if groups[neighbour] is None:
-        if not dfs(neighbour, not group):
-          return False
-    return True
+  people, groups, stack = defaultdict(list), defaultdict(bool), []
 
-  groups = defaultdict(lambda: None)
-  people = defaultdict(list)
-  for a, b in dislikes:
-    people[a].append(b)
-    people[b].append(a)
+  for person_a, person_b in dislikes:
+    people[person_a].append(person_b)
+    people[person_b].append(person_a)
+
   for person in people:
-    if groups[person] is None and not dfs(person):
-      return False
-  return True
-
-
-def possible_bipartition_2(_: int, dislikes: List[List[int]]) -> bool:
-  graph, colors = defaultdict(list), {}
-  for node1, node2 in dislikes:
-    graph[node1].append(node2)
-    graph[node2].append(node1)
-  for node in graph:
-    if node not in colors:
-      colors[node] = 0
-      queue = deque([node])
-      while queue:
-        node = queue.popleft()
-        color = colors[node]
-        for neighbour in graph[node]:
-          if neighbour in colors:
-            if color == colors[neighbour]:
-              return False
+    if person in groups:
+      continue
+    stack.append(person)
+    while stack:
+      person = stack.pop()
+      for person_b in people[person]:
+        if person_b in groups:
+          if groups[person_b] is groups[person]:
+            return False
           else:
-            colors[neighbour] = not color
-            queue.append(neighbour)
+            continue
+        groups[person_b] = not groups[person]
+        stack.append(person_b)
+
   return True
