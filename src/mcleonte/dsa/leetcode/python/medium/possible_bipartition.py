@@ -37,12 +37,9 @@ def possible_bipartition(_: int, dislikes: List[List[int]]) -> bool:
     while stack:
       person = stack.pop()
       for person_b in people[person]:
-        if person_b in groups:
-          if groups[person_b] is groups[person]:
-            return False
-          else:
-            continue
-        groups[person_b] = not groups[person]
-        stack.append(person_b)
-
+        if person_b not in groups:
+          groups[person_b] = not groups[person]
+          stack.append(person_b)
+        elif groups[person_b] is groups[person]:
+          return False
   return True
