@@ -1,50 +1,63 @@
-# This is an input class. Do not edit.
-class AncestralTree:
+"""
+You're given three inputs, all of which are instances of an AncestralTree class
+that have an ancestor property pointing to their youngest ancestor. The first
+input is the top ancestor in an ancestral tree, i.e., the only instance that has
+no ancestor--its ancestor property points to None / null, and the other two
+inputs are descendants in the ancestral tree.
 
-  def __init__(self, name):
-    self.name = name
-    self.ancestor = None
+Write a function that returns the youngest common ancestor to the two
+descendants.
+
+Note that a descendant is considered its own ancestor. So in the simple
+ancestral tree below, the youngest common ancestor to nodes A and B is node A.
+"""
+
+from .. import AncestralTree
 
 
-# O(d) O(1) | d = max( depth(d1), depth(d2) )
-def getYoungestCommonAncestor(a, d1, d2):
-  i, d = 0, d1
-  # get the depth of d1
-  while d:
+def get_youngest_common_ancestor(_, desc1: AncestralTree, desc2: AncestralTree):
+  """
+  O(d) O(1) | d = max( depth(desc1), depth(desc2) )
+  """
+  i, desc = 0, desc1
+  # get the depth of desc1
+  while desc:
     i += 1
-    d = d.ancestor
-  # and subtract the depth of d2
-  d = d2
-  while d:
+    desc = desc.ancestor
+  # and subtract the depth of desc2
+  desc = desc2
+  while desc:
     i -= 1
-    d = d.ancestor
+    desc = desc.ancestor
   # bring the youngest descendant to the same depth as the other
   if i < 0:
-    d1, d2 = d2, d1
+    desc1, desc2 = desc2, desc1
     i = abs(i)
   for _ in range(i):
-    d1 = d1.ancestor
-  # check at every depth if d1 and d2 have the same ancestor
-  while d1:
-    if d1 == d2:
-      return d1
-    d1, d2 = d1.ancestor, d2.ancestor
+    desc1 = desc1.ancestor
+  # check at every depth if desc1 and desc2 have the same ancestor
+  while desc1:
+    if desc1 == desc2:
+      return desc1
+    desc1, desc2 = desc1.ancestor, desc2.ancestor
 
 
-# O(d) O(d) | d = max( depth(d1), depth(d2) )
-def getYoungestCommonAncestor2(a, d1, d2):
-  ds = set()
-  while d1 or d2:
-    if d1:
-      if d1 in ds:
-        return d1
+def get_youngest_common_ancestor_2(anc, desc1, desc2):
+  """
+  O(d) O(d) | d = max( depth(d1), depth(d2) )
+  """
+  descs = set()
+  while desc1 or desc2:
+    if desc1:
+      if desc1 in descs:
+        return desc1
       else:
-        ds.add(d1)
-      d1 = d1.ancestor
-    if d2:
-      if d2 in ds:
-        return d2
+        descs.add(desc1)
+      desc1 = desc1.ancestor
+    if desc2:
+      if desc2 in descs:
+        return desc2
       else:
-        ds.add(d2)
-      d2 = d2.ancestor
-  return a
+        descs.add(desc2)
+      desc2 = desc2.ancestor
+  return anc
