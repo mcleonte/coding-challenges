@@ -1,16 +1,14 @@
 -- https://leetcode.com/problems/second-highest-salary/
 -- https://leetcode.com/problems/second-highest-salary/discuss/2951454/MySQL-or-elegant-replacing-of-empty-output-with-NULL
 WITH cte AS (
-  SELECT
-    salary,
-    DENSE_RANK() OVER(ORDER BY salary DESC) AS rnk
+  SELECT DISTINCT salary AS secondhighestsalary
   FROM employee
+  ORDER BY salary DESC
+  LIMIT 1, 1
 )
 
-SELECT salary AS secondhighestsalary
+SELECT secondhighestsalary
 FROM cte
-WHERE rnk = 2
-
 UNION ALL
 SELECT NULL
 LIMIT 1
