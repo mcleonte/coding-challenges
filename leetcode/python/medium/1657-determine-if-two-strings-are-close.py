@@ -9,11 +9,10 @@ class Solution:
 
     # O(n) O(n) - equivalent expanded version
     def closeStrings2(self, word1: str, word2: str) -> bool:
-        dflt = lambda: 0
-        d1 = defaultdict(dflt)
-        d2 = defaultdict(dflt)
-        v1 = defaultdict(dflt)
-        v2 = defaultdict(dflt)
+        d1 = defaultdict(int)
+        d2 = defaultdict(int)
+        v1 = defaultdict(int)
+        v2 = defaultdict(int)
         for k in word1:
             d1[k] += 1
         for k in word2:
