@@ -18,13 +18,9 @@ def range_sum_bst(root: Optional[TreeNode], low: int, high: int) -> int:
 
 
 def range_sum_bst_2(root: Optional[TreeNode], low: int, high: int) -> int:
-  if not root:
-    return 0
+  if not root: return 0
   out, val = 0, root.val
-  if low <= val <= high:
-    out += val
-  if low < val:
-    out += range_sum_bst_2(root.left, low, high)
-  if val < high:
-    out += range_sum_bst_2(root.right, low, high)
+  if low <= val <= high: out += val
+  if low < val: out += range_sum_bst_2(root.left, low, high)
+  if val < high: out += range_sum_bst_2(root.right, low, high)
   return out
