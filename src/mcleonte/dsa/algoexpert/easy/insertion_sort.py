@@ -6,15 +6,15 @@ of that array. Use the Insertion Sort algorithm to sort the array.
 from typing import List
 
 
-def insertion_sort(array: List[int]):
+def insertion_sort(arr: List[int]):
   """
   O(n^2) O(1)
   """
   i = 1
-  while i < len(array):
+  while i < len(arr):
     for j in range(i - 1, -1, -1):
-      if array[j + 1] >= array[j]:
+      if arr[j + 1] >= arr[j]:
         break
-      array[j + 1], array[j] = array[j], array[j + 1]
+      arr[j + 1], arr[j] = arr[j], arr[j + 1]
     i += 1
-  return array
+  return arr
