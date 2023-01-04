@@ -21,7 +21,7 @@ def minimum_rounds(tasks: List[int]) -> int:
   """
   O(n+u) O(u)
   n = number of tasks
-  u = number of unique task lengths
+  u = number of unique task difficulties
   """
   rounds = 0
   for c in Counter(tasks).values():
