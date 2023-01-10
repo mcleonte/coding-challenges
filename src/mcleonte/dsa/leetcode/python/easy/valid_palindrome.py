@@ -1,16 +1,28 @@
-# https://leetcode.com/problems/valid-palindrome/
-# https://leetcode.com/problems/valid-palindrome/discuss/2851453/Python-or-O(n)-O(n)-without-isalnum()-or-lower()
-# O(n) O(N)
-class Solution:
+"""
+https://leetcode.com/problems/valid-palindrome/
 
-  def isPalindrome(self, s: str) -> bool:
-    p = []
-    for c in s:
-      if "a" <= c <= "z" or "0" <= c <= "9":
-        p.append(c)
-      elif "A" <= c <= "Z":
-        p.append(chr(ord(c) + 32))
-    for i in range(len(p) // 2):
-      if p[i] != p[-1 - i]:
-        return False
-    return True
+https://leetcode.com/problems/valid-palindrome/discuss/2851453/Python-or-O(n)-O(1)-or-nested-while-loops
+
+A phrase is a palindrome if, after converting all uppercase letters into
+lowercase letters and removing all non-alphanumeric characters, it reads the
+same forward and backward. Alphanumeric characters include letters and numbers.
+
+Given a string s, return true if it is a palindrome, or false otherwise.
+"""
+
+
+def is_palindrome(s: str) -> bool:
+  """
+  O(n) O(1)
+  """
+  l, r = 0, len(s) - 1
+  while l < r:
+    while l < r and not s[l].isalnum():
+      l += 1
+    while l < r and not s[r].isalnum():
+      r -= 1
+    if s[l].lower() != s[r].lower():
+      return False
+    l += 1
+    r -= 1
+  return True
