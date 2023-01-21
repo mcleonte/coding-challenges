@@ -2,10 +2,11 @@
 My Google Foobar challenges and solutions.
 """
 
+from typing import List
 from fractions import Fraction, gcd
 
 
-def solar_doomsday(area):
+def solar_doomsday(area: int) -> List[int]:
   """
   Phase 1
   """
@@ -125,7 +126,7 @@ def doomsday_fuel(m):
   return [lcm * p.numerator // p.denominator for p in ps] + [lcm]
 
 
-def the_grandest_staircase_of_them_all(n):
+def the_grandest_staircase_of_them_all(n: int) -> int:
   """
   Phase 3 - Challenge 3
 
