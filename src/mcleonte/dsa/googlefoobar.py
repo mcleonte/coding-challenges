@@ -39,7 +39,7 @@ def hey_i_already_did_that(n, b):
       ids.append(n)
 
 
-def gearing_up_for_destruction(pegs):
+def gearing_up_for_destruction(pegs: List[int]) -> List[int, int]:
   """
   Phase 2 - Challenge 2
   """
@@ -55,11 +55,11 @@ def gearing_up_for_destruction(pegs):
   for s in spaces:
     r = s - r
     if r < 1:
-      return -1, -1
-  return n, d
+      return [-1, -1]
+  return [n, d]
 
 
-def bomb_baby(m, f):
+def bomb_baby(m: str, f: str) -> str:
   """
   Phase 3 - Challenge 1
   """
