@@ -76,7 +76,7 @@ def bomb_baby(m: str, f: str) -> str:
   return str(c)
 
 
-def doomsday_fuel(m):
+def doomsday_fuel(m: List[List[int]]) -> List[List[int]]:
   """
   Phase 3 - Challenge 2
   """
